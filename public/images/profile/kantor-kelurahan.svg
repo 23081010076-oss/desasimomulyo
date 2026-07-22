@@ -1,0 +1,16 @@
+<svg width="1200" height="800" viewBox="0 0 1200 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="800" rx="48" fill="#0F172A"/>
+  <circle cx="980" cy="150" r="180" fill="#14B8A6" fill-opacity="0.18"/>
+  <circle cx="170" cy="670" r="220" fill="#38BDF8" fill-opacity="0.15"/>
+  <rect x="240" y="250" width="720" height="360" rx="36" fill="#1E293B" stroke="#2DD4BF" stroke-opacity="0.35" stroke-width="4"/>
+  <rect x="300" y="315" width="180" height="295" rx="18" fill="#334155"/>
+  <rect x="522" y="315" width="180" height="295" rx="18" fill="#334155"/>
+  <rect x="744" y="315" width="156" height="295" rx="18" fill="#334155"/>
+  <rect x="504" y="208" width="192" height="86" rx="18" fill="#0F766E"/>
+  <rect x="560" y="354" width="80" height="140" rx="12" fill="#E2E8F0" fill-opacity="0.85"/>
+  <rect x="340" y="360" width="92" height="92" rx="14" fill="#E2E8F0" fill-opacity="0.85"/>
+  <rect x="781" y="360" width="92" height="92" rx="14" fill="#E2E8F0" fill-opacity="0.85"/>
+  <path d="M600 120C689 120 761 192 761 281C761 407 600 576 600 576C600 576 439 407 439 281C439 192 511 120 600 120Z" fill="#F59E0B" fill-opacity="0.16"/>
+  <circle cx="600" cy="281" r="78" fill="#14B8A6"/>
+  <path d="M600 241C621 241 638 258 638 279C638 316 600 350 600 350C600 350 562 316 562 279C562 258 579 241 600 241Z" fill="white"/>
+</svg>
