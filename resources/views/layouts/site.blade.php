@@ -31,6 +31,21 @@
 
         #mobile-menu { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
         #mobile-menu.open { max-height: 400px; }
+
+        /* Transparent Header Overrides (For Homepage Top) */
+        #main-header.is-transparent .nav-link { color: rgba(255, 255, 255, 0.8) !important; }
+        #main-header.is-transparent .nav-link:hover { color: #ffffff !important; }
+        #main-header.is-transparent .nav-link.active { color: #ffffff !important; font-weight: 600; }
+        #main-header.is-transparent .logo-text { color: #ffffff !important; }
+        #main-header.is-transparent .theme-toggle, 
+        #main-header.is-transparent #menu-toggle { color: rgba(255, 255, 255, 0.8) !important; }
+        #main-header.is-transparent .theme-toggle:hover, 
+        #main-header.is-transparent #menu-toggle:hover { color: #ffffff !important; }
+        #main-header.is-transparent .admin-link { color: rgba(255, 255, 255, 0.8) !important; }
+        #main-header.is-transparent .admin-link:hover { color: #ffffff !important; }
+        
+        /* Make Surabaya logo slightly white/brighter on transparent header by using brightness filter */
+        #main-header.is-transparent .logo-img { filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5)); }
     </style>
 </head>
 <body class="min-h-screen bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-300">
@@ -40,13 +55,13 @@
         <div class="absolute right-[-15%] top-[20%] h-[450px] w-[450px] rounded-full bg-cyan-500/10 blur-[130px] dark:bg-cyan-500/10"></div>
     </div>
 
-    <header class="sticky top-0 z-30 border-b border-slate-200 bg-white/85 backdrop-blur-xl dark:border-white/8 dark:bg-slate-950/85 transition-colors duration-300">
+    <header id="main-header" class="fixed inset-x-0 top-0 z-50 transition-all duration-500 border-b {{ request()->routeIs('home') ? 'is-transparent bg-transparent border-transparent' : 'bg-white/85 backdrop-blur-xl border-slate-200 dark:border-white/8 dark:bg-slate-950/85' }}">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="flex h-16 items-center justify-between">
 
                 <a href="{{ route('home') }}" class="group flex items-center gap-3">
-                    <img src="{{ asset('images/surabaya-logo.svg') }}" alt="Logo Surabaya" class="h-8 w-auto">
-                    <span class="text-sm font-semibold uppercase tracking-[0.25em] text-slate-900 transition group-hover:text-emerald-500 dark:text-white dark:group-hover:text-emerald-300">Simomulyo</span>
+                    <img src="{{ asset('images/surabaya-logo.svg') }}" alt="Logo Surabaya" class="logo-img h-8 w-auto transition-all">
+                    <span class="logo-text text-sm font-semibold uppercase tracking-[0.25em] text-slate-900 transition group-hover:text-emerald-500 dark:text-white dark:group-hover:text-emerald-300">Simomulyo</span>
                 </a>
 
                 <nav class="hidden items-center gap-6 md:flex">
@@ -58,7 +73,7 @@
                 </nav>
 
                 <div class="flex items-center gap-3">
-                    <button onclick="toggleTheme()" class="p-2 rounded-full text-slate-500 hover:bg-slate-200 dark:text-slate-400 dark:hover:bg-white/10 transition" aria-label="Toggle Theme">
+                    <button onclick="toggleTheme()" class="theme-toggle p-2 rounded-full text-slate-500 hover:bg-slate-200 dark:text-slate-400 dark:hover:bg-white/10 transition" aria-label="Toggle Theme">
                         <svg id="theme-icon-dark" class="hidden h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
                         </svg>
@@ -71,14 +86,14 @@
                     
                     @auth
                         @if(auth()->user()->role === 'admin')
-                            <a href="{{ route('admin.dashboard') }}" class="hidden text-xs text-emerald-600 transition hover:text-emerald-500 dark:text-emerald-400 dark:hover:text-emerald-300 md:block">Dashboard</a>
+                            <a href="{{ route('admin.dashboard') }}" class="admin-link hidden text-xs text-emerald-600 transition hover:text-emerald-500 dark:text-emerald-400 dark:hover:text-emerald-300 md:block">Dashboard</a>
                         @endif
                         <form method="POST" action="{{ route('logout') }}" class="hidden md:block">
                             @csrf
-                            <button type="submit" class="text-xs text-slate-500 transition hover:text-red-500 dark:hover:text-red-400">Logout</button>
+                            <button type="submit" class="admin-link text-xs text-slate-500 transition hover:text-red-500 dark:hover:text-red-400">Logout</button>
                         </form>
                     @else
-                        <a href="{{ route('login') }}" class="hidden text-xs text-slate-500 transition hover:text-slate-800 dark:hover:text-slate-300 md:block">Admin</a>
+                        <a href="{{ route('login') }}" class="admin-link hidden text-xs text-slate-500 transition hover:text-slate-800 dark:hover:text-slate-300 md:block">Admin</a>
                     @endauth
 
                     <button id="menu-toggle" class="p-1 text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white md:hidden" onclick="toggleMenu()">
@@ -111,7 +126,7 @@
         </div>
     </header>
 
-    <main>
+    <main class="{{ request()->routeIs('home') ? '' : 'pt-16' }}">
         @yield('content')
     </main>
 
@@ -185,6 +200,22 @@
             iconOpen.classList.toggle('hidden');
             iconClose.classList.toggle('hidden');
         }
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('main-header');
+            const isHome = {{ request()->routeIs('home') ? 'true' : 'false' }};
+            
+            if (isHome) {
+                if (window.scrollY > 50) {
+                    header.classList.remove('is-transparent', 'bg-transparent', 'border-transparent');
+                    header.classList.add('bg-white/85', 'backdrop-blur-xl', 'border-slate-200', 'dark:bg-slate-950/85', 'dark:border-white/8');
+                } else {
+                    header.classList.add('is-transparent', 'bg-transparent', 'border-transparent');
+                    header.classList.remove('bg-white/85', 'backdrop-blur-xl', 'border-slate-200', 'dark:bg-slate-950/85', 'dark:border-white/8');
+                }
+            }
+        });
     </script>
     @stack('scripts')
 </body>
