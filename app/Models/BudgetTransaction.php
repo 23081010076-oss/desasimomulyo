@@ -12,6 +12,7 @@ class BudgetTransaction extends Model
     protected $fillable = [
         'title',
         'category',
+        'type',
         'amount',
         'transaction_date',
         'notes',

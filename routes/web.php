@@ -15,6 +15,11 @@ Route::get('/peta-desa', [PublicSiteController::class, 'map'])->name('map');
 Route::get('/berita', [PublicSiteController::class, 'news'])->name('news');
 Route::get('/berita/{article:slug}', [PublicSiteController::class, 'showNews'])->name('news.show');
 Route::get('/produk', [PublicSiteController::class, 'products'])->name('products');
+Route::get('/transparansi-dana', [PublicSiteController::class, 'budgetTransparency'])->name('budget.transparency');
+Route::get('/layanan-surat', [PublicSiteController::class, 'documents'])->name('documents');
+Route::post('/layanan-surat', [PublicSiteController::class, 'storeDocument'])
+    ->name('documents.store')
+    ->middleware('throttle:5,1'); // Limit 5 requests per minute
 
 Route::get('/hotline', [HotlineController::class, 'index'])->name('hotline');
 Route::post('/hotline', [HotlineController::class, 'store'])

@@ -70,6 +70,8 @@
                     <a href="{{ route('map') }}" class="nav-link {{ request()->routeIs('map') ? 'active' : '' }}">Peta</a>
                     <a href="{{ route('news') }}" class="nav-link {{ request()->routeIs('news*') ? 'active' : '' }}">Berita</a>
                     <a href="{{ route('products') }}" class="nav-link {{ request()->routeIs('products*') ? 'active' : '' }}">UMKM</a>
+                    <a href="{{ route('documents') }}" class="nav-link {{ request()->routeIs('documents*') ? 'active' : '' }}">Surat Menyurat</a>
+                    <a href="{{ route('budget.transparency') }}" class="nav-link {{ request()->routeIs('budget.transparency') ? 'active' : '' }}">Dana Desa</a>
                 </nav>
 
                 <div class="flex items-center gap-3">
@@ -110,6 +112,8 @@
                     <a href="{{ route('map') }}" class="px-2 py-2.5 text-sm text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white">Peta Desa</a>
                     <a href="{{ route('news') }}" class="px-2 py-2.5 text-sm text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white">Berita</a>
                     <a href="{{ route('products') }}" class="px-2 py-2.5 text-sm text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white">UMKM</a>
+                    <a href="{{ route('documents') }}" class="px-2 py-2.5 text-sm text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white">Surat Menyurat</a>
+                    <a href="{{ route('budget.transparency') }}" class="px-2 py-2.5 text-sm text-emerald-600 hover:text-emerald-700 dark:text-emerald-400 dark:hover:text-emerald-300">Dana Desa</a>
                     <a href="{{ route('hotline') }}" class="mt-2 px-2 py-2.5 text-sm font-medium text-amber-600 dark:text-amber-300">Hotline Darurat</a>
                     
                     @auth

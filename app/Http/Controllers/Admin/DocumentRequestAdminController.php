@@ -28,7 +28,20 @@ class DocumentRequestAdminController extends Controller
 
     public function store(Request $request): RedirectResponse
     {
-        DocumentRequest::create($request->only(['user_id', 'document_type_id', 'admin_id', 'request_number', 'payload', 'status', 'signed_at', 'completed_at']));
+        $data = $request->only(['document_type_id', 'applicant_name', 'applicant_nik', 'applicant_phone', 'purpose', 'tracking_code', 'status']);
+        $data['admin_id'] = auth()->id();
+        
+        if (!$request->filled('request_number')) {
+            $data['request_number'] = 'REQ-' . date('Ymd') . '-' . strtoupper(\Illuminate\Support\Str::random(5));
+        } else {
+            $data['request_number'] = $request->input('request_number');
+        }
+
+        if (!$request->filled('tracking_code')) {
+            $data['tracking_code'] = strtoupper(\Illuminate\Support\Str::random(10));
+        }
+
+        DocumentRequest::create($data);
 
         return redirect()->route('admin.document-requests.index');
     }
@@ -43,7 +56,14 @@ class DocumentRequestAdminController extends Controller
 
     public function update(Request $request, DocumentRequest $documentRequest): RedirectResponse
     {
-        $documentRequest->update($request->only(['document_type_id', 'admin_id', 'payload', 'status', 'signed_at', 'completed_at']));
+        $data = $request->only(['document_type_id', 'applicant_name', 'applicant_nik', 'applicant_phone', 'purpose', 'tracking_code', 'status']);
+        
+        if ($request->input('mark_completed') == '1' && !$documentRequest->completed_at) {
+            $data['completed_at'] = now();
+            $data['status'] = \App\Enums\DocumentRequestStatus::COMPLETED->value;
+        }
+
+        $documentRequest->update($data);
 
         return redirect()->route('admin.document-requests.index');
     }

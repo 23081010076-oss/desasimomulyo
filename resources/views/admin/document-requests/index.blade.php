@@ -9,8 +9,9 @@
         @foreach ($requests as $requestItem)
             <div class="flex items-center justify-between border-b border-white/10 p-4">
                 <div>
-                    <p class="font-medium text-white">{{ $requestItem->request_number }}</p>
-                    <p class="text-sm text-slate-400">{{ $requestItem->status->value ?? $requestItem->status }}</p>
+                    <p class="font-medium text-white">{{ $requestItem->request_number }} <span class="text-xs text-slate-400">({{ $requestItem->documentType->name }})</span></p>
+                    <p class="text-sm text-slate-300">Pemohon: {{ $requestItem->applicant_name ?? 'Tanpa Nama' }}</p>
+                    <p class="text-xs text-slate-400 mt-1">Status: {{ $requestItem->status->value ?? $requestItem->status }}</p>
                 </div>
                 <div class="flex gap-3 text-sm">
                     <a class="text-cyan-300" href="{{ route('admin.document-requests.edit', $requestItem) }}">Edit</a>

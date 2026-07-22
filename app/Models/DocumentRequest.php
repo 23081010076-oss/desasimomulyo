@@ -13,6 +13,11 @@ class DocumentRequest extends Model
 
     protected $fillable = [
         'user_id',
+        'applicant_name',
+        'applicant_nik',
+        'applicant_phone',
+        'purpose',
+        'tracking_code',
         'document_type_id',
         'admin_id',
         'request_number',
