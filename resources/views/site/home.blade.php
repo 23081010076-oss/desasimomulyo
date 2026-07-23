@@ -46,25 +46,55 @@
 </style>
 @endpush
 
-{{-- Stats bar --}}
-<div class="border-y border-slate-200 bg-slate-100/50 dark:border-white/8 dark:bg-white/3 transition-colors duration-300">
+
+
+{{-- Aparatur Kelurahan --}}
+<section class="border-b border-slate-200 bg-white py-16 dark:border-white/8 dark:bg-slate-950 transition-colors duration-300">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div class="grid divide-y divide-slate-200 dark:divide-white/8 sm:grid-cols-3 sm:divide-x sm:divide-y-0 transition-colors duration-300">
-            <div class="px-0 py-6 sm:px-8">
-                <p class="text-2xl font-semibold text-slate-900 dark:text-white">Rp {{ number_format($budgetTotal, 0, ',', '.') }}</p>
-                <p class="mt-1 text-sm text-slate-500">Total APBDes</p>
+        <div class="mb-12 text-center">
+            <h2 class="text-3xl font-semibold text-slate-900 dark:text-white">Aparatur Kelurahan</h2>
+            <p class="mt-4 text-sm text-slate-600 dark:text-slate-400">Mengenal lebih dekat para pengabdi masyarakat di Kelurahan Simomulyo</p>
+        </div>
+
+        <div class="grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-2 md:grid-cols-4">
+            {{-- Aparatur 1 --}}
+            <div class="group text-center">
+                <div class="mx-auto mb-4 overflow-hidden rounded-full border-4 border-slate-100 shadow-md transition-all duration-300 group-hover:scale-105 group-hover:border-emerald-500/30 group-hover:shadow-lg dark:border-white/10 dark:group-hover:border-emerald-500/50">
+                    <img src="{{ asset('images/aparatur/lurah.png') }}" alt="Lurah" class="aspect-square w-full object-cover">
+                </div>
+                <h3 class="text-base font-medium text-slate-900 dark:text-white">Bpk. Achmad Santoso</h3>
+                <p class="mt-1 text-sm text-emerald-600 dark:text-emerald-400">Kepala Kelurahan</p>
             </div>
-            <div class="px-0 py-6 sm:px-8">
-                <p class="text-2xl font-semibold text-slate-900 dark:text-white">{{ $budgetCount }}</p>
-                <p class="mt-1 text-sm text-slate-500">Transaksi Anggaran</p>
+
+            {{-- Aparatur 2 --}}
+            <div class="group text-center">
+                <div class="mx-auto mb-4 overflow-hidden rounded-full border-4 border-slate-100 shadow-md transition-all duration-300 group-hover:scale-105 group-hover:border-emerald-500/30 group-hover:shadow-lg dark:border-white/10 dark:group-hover:border-emerald-500/50">
+                    <img src="{{ asset('images/aparatur/sekretaris.png') }}" alt="Sekretaris" class="aspect-square w-full object-cover">
+                </div>
+                <h3 class="text-base font-medium text-slate-900 dark:text-white">Ibu Siti Aminah</h3>
+                <p class="mt-1 text-sm text-emerald-600 dark:text-emerald-400">Sekretaris Kelurahan</p>
             </div>
-            <div class="px-0 py-6 sm:px-8">
-                <p class="text-2xl font-semibold text-slate-900 dark:text-white">24 / 7</p>
-                <p class="mt-1 text-sm text-slate-500">Hotline Aktif</p>
+
+            {{-- Aparatur 3 --}}
+            <div class="group text-center">
+                <div class="mx-auto mb-4 overflow-hidden rounded-full border-4 border-slate-100 shadow-md transition-all duration-300 group-hover:scale-105 group-hover:border-emerald-500/30 group-hover:shadow-lg dark:border-white/10 dark:group-hover:border-emerald-500/50">
+                    <img src="{{ asset('images/aparatur/kasi-pem.png') }}" alt="Kasi Pemerintahan" class="aspect-square w-full object-cover">
+                </div>
+                <h3 class="text-base font-medium text-slate-900 dark:text-white">Bpk. Budi Pratama</h3>
+                <p class="mt-1 text-sm text-emerald-600 dark:text-emerald-400">Kasi Pemerintahan</p>
+            </div>
+
+            {{-- Aparatur 4 --}}
+            <div class="group text-center">
+                <div class="mx-auto mb-4 overflow-hidden rounded-full border-4 border-slate-100 shadow-md transition-all duration-300 group-hover:scale-105 group-hover:border-emerald-500/30 group-hover:shadow-lg dark:border-white/10 dark:group-hover:border-emerald-500/50">
+                    <img src="{{ asset('images/aparatur/kasi-kesra.png') }}" alt="Kasi Kesra" class="aspect-square w-full object-cover">
+                </div>
+                <h3 class="text-base font-medium text-slate-900 dark:text-white">Ibu Nisa Rahayu</h3>
+                <p class="mt-1 text-sm text-emerald-600 dark:text-emerald-400">Kasi Kesra</p>
             </div>
         </div>
     </div>
-</div>
+</section>
 
 {{-- Berita & UMKM --}}
 <section class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">

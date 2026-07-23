@@ -26,6 +26,12 @@ class DashboardController extends Controller
                 'products' => Product::count(),
             ],
             'recentReports' => Report::latest()->take(5)->get(),
+            'reportsByStatus' => Report::selectRaw('status, count(*) as total')->groupBy('status')->pluck('total', 'status')->toArray(),
+            'budgetStats' => [
+                'income' => BudgetTransaction::where('type', 'income')->sum('amount'),
+                'expense' => BudgetTransaction::where('type', 'expense')->sum('amount'),
+            ],
+            'documentsByStatus' => DocumentRequest::selectRaw('status, count(*) as total')->groupBy('status')->pluck('total', 'status')->toArray(),
         ]);
     }
 }

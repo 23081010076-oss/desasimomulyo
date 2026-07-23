@@ -22,7 +22,7 @@ class BudgetTransactionAdminController extends Controller
 
     public function store(Request $request): RedirectResponse
     {
-        BudgetTransaction::create($request->only(['title', 'category', 'amount', 'transaction_date', 'notes']));
+        BudgetTransaction::create($request->only(['title', 'category', 'type', 'amount', 'transaction_date', 'notes']));
 
         return redirect()->route('admin.budgets.index');
     }
@@ -34,7 +34,7 @@ class BudgetTransactionAdminController extends Controller
 
     public function update(Request $request, BudgetTransaction $budget): RedirectResponse
     {
-        $budget->update($request->only(['title', 'category', 'amount', 'transaction_date', 'notes']));
+        $budget->update($request->only(['title', 'category', 'type', 'amount', 'transaction_date', 'notes']));
 
         return redirect()->route('admin.budgets.index');
     }

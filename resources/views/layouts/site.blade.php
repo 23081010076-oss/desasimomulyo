@@ -86,17 +86,7 @@
 
                     <a href="{{ route('hotline') }}" class="hidden rounded border border-amber-500/30 bg-amber-500/10 px-4 py-2 text-sm font-medium text-amber-600 transition hover:bg-amber-500/20 dark:border-amber-400/30 dark:bg-amber-400/10 dark:text-amber-300 dark:hover:bg-amber-400/20 md:block">Hotline</a>
                     
-                    @auth
-                        @if(auth()->user()->role === 'admin')
-                            <a href="{{ route('admin.dashboard') }}" class="admin-link hidden text-xs text-emerald-600 transition hover:text-emerald-500 dark:text-emerald-400 dark:hover:text-emerald-300 md:block">Dashboard</a>
-                        @endif
-                        <form method="POST" action="{{ route('logout') }}" class="hidden md:block">
-                            @csrf
-                            <button type="submit" class="admin-link text-xs text-slate-500 transition hover:text-red-500 dark:hover:text-red-400">Logout</button>
-                        </form>
-                    @else
-                        <a href="{{ route('login') }}" class="admin-link hidden text-xs text-slate-500 transition hover:text-slate-800 dark:hover:text-slate-300 md:block">Admin</a>
-                    @endauth
+
 
                     <button id="menu-toggle" class="p-1 text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white md:hidden" onclick="toggleMenu()">
                         <span id="icon-open" class="block text-xl leading-none">☰</span>
@@ -116,15 +106,7 @@
                     <a href="{{ route('budget.transparency') }}" class="px-2 py-2.5 text-sm text-emerald-600 hover:text-emerald-700 dark:text-emerald-400 dark:hover:text-emerald-300">Dana Desa</a>
                     <a href="{{ route('hotline') }}" class="mt-2 px-2 py-2.5 text-sm font-medium text-amber-600 dark:text-amber-300">Hotline Darurat</a>
                     
-                    @auth
-                        @if(auth()->user()->role === 'admin')
-                            <a href="{{ route('admin.dashboard') }}" class="px-2 py-2.5 text-sm text-emerald-600 dark:text-emerald-400">Dashboard</a>
-                        @endif
-                        <form method="POST" action="{{ route('logout') }}" class="mt-1">
-                            @csrf
-                            <button type="submit" class="px-2 py-2.5 text-sm text-red-500 dark:text-red-400">Logout</button>
-                        </form>
-                    @endauth
+
                 </nav>
             </div>
         </div>

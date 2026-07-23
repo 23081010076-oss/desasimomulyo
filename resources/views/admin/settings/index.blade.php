@@ -1,7 +1,12 @@
 @extends('layouts.admin')
 
+@section('page-title', 'Pengaturan Desa')
+
 @section('content')
-    <h1 class="mb-6 text-2xl font-semibold text-slate-900 dark:text-white">Pengaturan Desa</h1>
+    <div class="mb-6">
+        <h1 class="text-2xl font-semibold text-slate-900 dark:text-white">Pengaturan Desa</h1>
+        <p class="mt-1 text-sm text-slate-600 dark:text-slate-400">Konfigurasi informasi kontak dan lokasi kantor desa</p>
+    </div>
 
     @if (session('success'))
         <div class="mb-6 rounded-lg border border-emerald-500/30 bg-emerald-50 p-4 dark:bg-emerald-500/10">
